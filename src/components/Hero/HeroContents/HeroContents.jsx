@@ -1,7 +1,8 @@
 import React from "react";
-import { Grid, Typography, Container } from "@mui/material";
+import { Grid } from "@mui/material";
 import HeroTitle from "./HeroTitle/HeroTitle";
 import SearchInput from "./SearchInput/SearchInput";
+import HeroCategories from "./HeroCategories/HeroCategories";
 const HeroContents = () => {
   return (
     <Grid
@@ -17,6 +18,8 @@ const HeroContents = () => {
     >
       <HeroTitle />
       <SearchInput />
+      <HeroCategories/>
+      
     </Grid>
   );
 };

@@ -3,7 +3,7 @@ import DatePicker from "./DatePicker/DatePicker";
 
 const InputButtons = () => {
   return (
-    <Grid sx={{ display: "flex", gap: 40 }}>
+    <Grid sx={{ display: "flex", justifyContent:"center", gap: 10 }}>
       <DatePicker />
       <Button>Check Out</Button>
       <Button

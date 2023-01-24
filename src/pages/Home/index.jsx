@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import React from "react";
 import HeroContents from "../../components/Hero/HeroContents/HeroContents";
-import NavBar from "../../components/Navigation/NavBar";
+import NavBar from "../../components/Hero/Navigation/NavBar";
 const Home = () => {
   return (
     <Grid>

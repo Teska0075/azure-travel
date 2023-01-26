@@ -3,6 +3,8 @@ import { Grid } from "@mui/material";
 import HeroTitle from "./HeroTitle/HeroTitle";
 import SearchInput from "./SearchInput/SearchInput";
 import HeroCategories from "./HeroCategories/HeroCategories";
+import VacationDestinations from "./VacationDestinations";
+
 const HeroContents = () => {
   return (
     <Grid
@@ -18,8 +20,8 @@ const HeroContents = () => {
     >
       <HeroTitle />
       <SearchInput />
-      <HeroCategories/>
-      
+      <HeroCategories />
+      <VacationDestinations />
     </Grid>
   );
 };

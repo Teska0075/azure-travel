@@ -6,7 +6,7 @@ import { Box, Grid, Typography } from "@mui/material";
 
 const HeroCategories = () => {
   return (
-    <Grid sx={{ marginTop: "40px" }}>
+    <Grid sx={{ marginTop: "65px" }}>
       <Grid>
         <Typography
           variant="h3"

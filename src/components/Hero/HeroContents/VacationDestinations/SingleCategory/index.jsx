@@ -2,7 +2,6 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 
 const SingleCategory = ({ card }) => {
-  console.log("test", card.title);
   return (
     <Box
       sx={{

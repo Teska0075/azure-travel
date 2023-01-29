@@ -1,9 +1,8 @@
 import React from "react";
-import Divider from "@mui/material/Divider";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import { styled, alpha } from "@mui/material/styles";
-import { Button, InputBase } from "@mui/material";
+import { InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import InputButtons from "./InputButtons/InputButtons";
 
@@ -62,13 +61,12 @@ const SearchInput = () => {
       style={{
         background: "rgba(255, 255, 255, 0.5)",
         marginTop: 60,
-        width: "100%",
+        width: "95%",
         borderRadius: 20,
         padding: 20,
         justifyContent: "space-between",
       }}
       direction="row"
-      //   spacing={100}
     >
       <Search>
         <SearchIconWrapper>

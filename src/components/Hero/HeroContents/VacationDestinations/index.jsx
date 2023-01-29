@@ -6,7 +6,7 @@ import { vacationDestination as Data } from "../../../../data/VacationDestinatio
 
 const VacationDestinations = () => {
   return (
-    <Grid sx={{ marginTop: "80px", zIndex: "1", width: "94.5vw" }}>
+    <Grid sx={{ marginTop: "4%", zIndex: "1", width: "100%" }}>
       <Grid>
         <Typography
           variant="h3"
@@ -17,14 +17,14 @@ const VacationDestinations = () => {
       </Grid>
       <Grid
         sx={{
-          marginTop: "60px",
+          marginTop: "2%",
           overflowX: "scroll",
           "&::-webkit-scrollbar": {
             display: "none",
           },
         }}
       >
-        <Box sx={{ display: "flex", gap: "24px" }}>
+        <Box sx={{ display: "flex", gap: "2%", padding:"1%" }}>
           {Data.map((card, i) => (
             <SingleCategory key={i} card={card} />
           ))}

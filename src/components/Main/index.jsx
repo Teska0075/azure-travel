@@ -1,19 +1,22 @@
 import { Grid } from "@mui/material";
 import React from "react";
-import VacationDestinations from "../Hero/HeroContents/VacationDestinations";
+import Banner from "./Banner";
+import TravelCommunity from "./Community";
 import Offers from "./Offers";
+import PropertyType from "./Property";
 
 const MainContents = () => {
   return (
     <Grid
       sx={{
-        backgroundColor: "#ffdd00",
         width: "100%",
-        marginTop: "160px",
         paddingLeft: 15,
       }}
     >
       <Offers />
+      <PropertyType/>
+      <Banner/>
+      <TravelCommunity/>
     </Grid>
   );
 };

@@ -9,9 +9,8 @@ const HeroContents = () => {
   return (
     <Grid
       sx={{
-        top: 0,
-        position: "absolute",
-        padding: 15,
+        paddingTop:15,
+        paddingLeft: 15,
         width: "100vw",
         height: "100vh",
         display: "flex",

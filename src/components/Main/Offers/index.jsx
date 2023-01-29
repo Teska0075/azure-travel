@@ -5,22 +5,22 @@ import SingleOffer from "./SingleOffer";
 
 const Offers = () => {
   return (
-    <Grid sx={{ width: "100%", backgroundColor: "#f123" }}>
+    <Grid sx={{ marginTop: "0%", width: "100%"}}>
       <Grid>
-        <Typography variant="h3" sx={{ fontWeight: "700", width: "900px" }}>
+        <Typography variant="h3" sx={{color:"dark", fontWeight: "700", width: "900px" }}>
           Offers
         </Typography>
       </Grid>
       <Grid
         sx={{
-          marginTop: "60px",
+          marginTop: "2%",
           overflowX: "scroll",
           "&::-webkit-scrollbar": {
             display: "none",
           },
         }}
       >
-        <Box>
+        <Box sx={{display:"flex", gap:"2%", padding:"1%"}}>
           {Data.map((card, i) => (
             <SingleOffer key={i} card={card} />
           ))}

@@ -6,7 +6,7 @@ import { Box, Grid, Typography } from "@mui/material";
 
 const HeroCategories = () => {
   return (
-    <Grid sx={{ marginTop: "65px" }}>
+    <Grid sx={{ marginTop: "4%", paddingRight: 15 }}>
       <Grid>
         <Typography
           variant="h3"
@@ -15,7 +15,7 @@ const HeroCategories = () => {
           Top Categories
         </Typography>
       </Grid>
-      <Grid sx={{ marginTop: "2%", marginBottom: "3%" }}>
+      <Grid sx={{ marginTop: "2%",  }}>
         <Box sx={{ display: "flex", gap: "6% " }}>
           {categories.map((card, i) => (
             <SingleCategory key={i} card={card} />

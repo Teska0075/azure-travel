@@ -7,7 +7,7 @@ const Boxshadow = () => {
       sx={{
         display: "flex",
         width: "100%",
-        position: "absolute",
+
         bottom: 0,
         zIndex: "0",
         height: "14%",

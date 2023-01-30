@@ -25,7 +25,7 @@ export default function BasicModal() {
   return (
     <div>
       <Button onClick={handleOpen} sx={{ fontWeight: "bold", color: "#fff" }}>
-        Sign Up
+        Sign In
       </Button>
       <Modal
         open={open}

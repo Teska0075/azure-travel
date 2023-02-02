@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button, Grid, Toolbar, Typography, styled, Box } from '@mui/material'
-import InputBase from '@mui/material/InputBase';
+import { Button, Grid, Typography,} from '@mui/material'
+
 import PhoneContact from './Phone';
 
 const TopContentLeft = () => {

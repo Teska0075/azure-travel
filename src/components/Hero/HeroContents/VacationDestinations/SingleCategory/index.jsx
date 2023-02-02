@@ -10,6 +10,7 @@ const SingleCategory = ({ card }) => {
     >
       <img
         src={`${card.imageURL}`}
+        alt={""}
         style={{ width: "420px", height: "310px", borderRadius: "20px" }}
       ></img>
       <Typography

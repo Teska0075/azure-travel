@@ -1,9 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -42,6 +40,15 @@ const SignUp = (props) => {
             margin="normal"
             required
             fullWidth
+            id="name"
+            label="Username"
+            name="name"
+            autoFocus
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
             id="email"
             label="Email Address"
             name="email"
@@ -67,10 +74,6 @@ const SignUp = (props) => {
             type="password"
             id="re-password"
             autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
           />
           <Button
             type="submit"

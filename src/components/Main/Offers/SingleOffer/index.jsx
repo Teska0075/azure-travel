@@ -21,6 +21,7 @@ const SingleOffer = ({ card }) => {
       >
         <img
           src={card.imageURL}
+          alt=""
           width={"100%"}
           style={{ width: 400,
             height: 225,borderRadius: "20px" }}

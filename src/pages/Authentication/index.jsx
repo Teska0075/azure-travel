@@ -3,14 +3,14 @@ import SignIn from "./SignIn/SignIn";
 import SignUp from "./SignUp/SignUp";
 import { useState } from "react";
 
-const AuthPage = () => {
-  const [isSignIn, setIsSignIn] = useState(true);
+const AuthPage = ({handleClose, isLogged, login}) => {
+  const [isSignIn, setSignIn] = useState(true);
   return (
     <>
       {isSignIn ? (
-        <SignIn setIsSignIn={setIsSignIn} />
+        <SignIn setSignIn={setSignIn} handleClose={handleClose} isLogged={isLogged} login={login}/>
       ) : (
-        <SignUp setIsSignIn={setIsSignIn} />
+        <SignUp setSignIn={setSignIn} />
       )}
     </>
   );

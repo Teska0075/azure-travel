@@ -6,7 +6,7 @@ const SingleProperty = ({card}) => {
     <Box sx={{
         position:"relative"
     }}>
-        <img src={card.imageURL} style={{ width: "420px", height: "310px", borderRadius: "20px" }} />
+        <img src={card.imageURL} alt="" style={{ width: "420px", height: "310px", borderRadius: "20px" }} />
         <Typography sx={{
           color: "#fff",
           position: "absolute",

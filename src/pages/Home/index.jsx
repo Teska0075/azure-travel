@@ -1,30 +1,15 @@
-import { Button, Grid } from "@mui/material";
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import React from "react";
+import { Grid } from "@mui/material";
+
 import Footer from "../../components/Footer";
 import HeroContents from "../../components/Hero/HeroContents/HeroContents";
-import NavBar from "../../components/Hero/Navigation/NavBar";
 import MainContents from "../../components/Main";
 
 const Home = () => {
-  const newLogged = localStorage.getItem("isLogged");
-
-  const [isLogged, setIsLogged] = useState(newLogged);
-
-  const logOut = () => {
-    localStorage.setItem("isLogged", false);
-    setIsLogged(false);
-  };
-
-  if (isLogged === "true") {
-  } else {
-    // return <Navigate replace to="/" />;
-  }
 
   return (
     <Grid sx={{ width: "100vw" }}>
-      <NavBar />
+      
       <Grid
         sx={{
           background: "url(images/hero.png) no-repeat  ",

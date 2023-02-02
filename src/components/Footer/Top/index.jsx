@@ -15,7 +15,7 @@ const FooterTop = () => {
         gap:5
     }}>
         <Grid>
-            <img src='images/footer/mockup.png'></img>
+            <img src='images/footer/mockup.png' alt=''></img>
         </Grid>
         <Grid>
             <FooterTopText/>

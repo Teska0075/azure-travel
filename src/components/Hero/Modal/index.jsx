@@ -1,7 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import AuthPage from "../../../pages/Authentication";
 
@@ -17,26 +16,53 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
+const BasicModal = ({user,login,logout,handleOpen,handleClose,open }) => {
+    
   return (
-    <div>
-      <Button onClick={handleOpen} sx={{ fontWeight: "bold", color: "#fff" }}>
-        Sign In
-      </Button>
+    <>
+      {user ? (
+              <Button
+                onClick={() => {
+                  logout();
+                }}
+                sx={{
+                  padding: "0",
+                  fontWeight: "700",
+                  fontSize: "16px",
+                  color: "#fff",
+                  textTransform: "none",
+                  marginLeft: "2vw",
+                  opacity: "0.8",
+                }}
+              >
+                Sign Out
+              </Button>
+            ) : (
+              <Button
+                onClick={handleOpen}
+                sx={{
+                  padding: "0",
+                  fontWeight: "700",
+                  fontSize: "16px",
+                  color: "#fff",
+                  textTransform: "none",
+                  marginLeft: "2vw",
+                  opacity: "0.8",
+                }}
+              >
+                Sign In
+              </Button>
+            )}
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <AuthPage />
+          <AuthPage handleClose={handleClose} login={login}/>
         </Box>
       </Modal>
-    </div>
+    </>
   );
 }
+
+export default BasicModal;

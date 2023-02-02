@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -12,47 +12,33 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useState } from "react";
 
-import { useNavigate } from "react-router-dom";
 import { Alert, Snackbar } from "@mui/material";
 
-const SignIn = () => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+const SignIn = ({setSignIn, login}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
+  const [message, setMessage] = useState("");
 
-  const login = () => {
-    console.log("Login");
-    if (email === "" || password === "") {
-      setOpen(true);
-    } else {
-      console.log(email, password);
-      localStorage.setItem("isLogged", true);
-      navigate("/");
-    }
-  };
 
-  const onClose = () => {
-    setOpen(false);
-  };
+  const [isAlert,setIsAlert] = useState(false);
 
   const changeEmail = (e) => {
-    // console.log("Email", e.target.value);
     setEmail(e.target.value);
   };
 
   const changePassword = (e) => {
-    // console.log(e.target.value);
     setPassword(e.target.value);
   };
+
+  const handleClick = () => {
+    if(email === "" || password === ""){
+      setMessage("Please fill all the areas");
+      setIsAlert(true)
+      return
+    }
+
+    login(email,password)
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -70,7 +56,7 @@ const SignIn = () => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <Box onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required
@@ -99,9 +85,10 @@ const SignIn = () => {
           />
           <Button
             // type="submit"
-            onClick={login}
+            onClick={handleClick}
             fullWidth
             variant="contained"
+            
             sx={{ mt: 3, mb: 2 }}
           >
             Sign In
@@ -115,7 +102,7 @@ const SignIn = () => {
             <Grid item>
               <Button
                 onClick={() => {
-                  this.props.setIsSignIn(false);
+                  setSignIn(false);
                 }}
                 variant="text"
               >
@@ -126,13 +113,15 @@ const SignIn = () => {
         </Box>
       </Box>
       <Snackbar
-        open={open}
+        open={isAlert}
         autoHideDuration={3000}
-        onClose={onClose}
+        onClose={()=>{
+          setIsAlert(false)
+        }}
         anchorOrigin={{ vertical: "top", horizontal: "left" }}
       >
         <Alert severity="error" sx={{ width: "100%" }}>
-          Username or Password is incorrect or empty.
+          {message}
         </Alert>
       </Snackbar>
     </Container>

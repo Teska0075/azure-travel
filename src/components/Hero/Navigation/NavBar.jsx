@@ -1,43 +1,54 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import BasicModal from "../Modal";
-import {
-  Alert,
-  IconButton,
-  Menu,
-  MenuItem,
-  Snackbar,
-  Tooltip,
-  Avatar,
-} from "@mui/material";
+import { useState } from "react";
+import { Divider, Drawer, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 
+const drawerWidth = 240;
 const navItems = ["Home", "Stays", "Flights", "Packages"];
 
-function DrawerAppBar(props) {
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+function DrawerAppBar({
+  window,
+  login,
+  logout,
+  user,
+  open,
+  handleClose,
+  handleOpen,
+  }) {
+  
+    const [mobileOpen, setMobileOpen] = useState(false);
+    
+    const handleDrawerToggle = () => {
+      setMobileOpen((prevState) => !prevState);
+    };
 
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+    const drawer = (
+      <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+        <Typography variant="h6" sx={{ my: 2 }}>
+          trxvl.
+        </Typography>
+        <Divider />
+        <List>
+          {navItems.map((item) => (
+            <ListItem key={item} disablePadding>
+              <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemText primary={item} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Box>
+    );
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+    const container =
+    window !== undefined ? () => window().document.body : undefined;
 
-  const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-  const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-
-  const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
-  };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -72,48 +83,33 @@ function DrawerAppBar(props) {
               </Button>
             ))}
           </Box>
-          <BasicModal />
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+          <Box component="nav">
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            display: { xs: "block", sm: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </Box>
+          <BasicModal login={login} logout={logout} user={user} open={open} handleOpen={handleOpen} handleClose={handleClose}/>
         </Toolbar>
       </AppBar>
     </Box>
   );
 }
 
-DrawerAppBar.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-};
+
 
 export default DrawerAppBar;

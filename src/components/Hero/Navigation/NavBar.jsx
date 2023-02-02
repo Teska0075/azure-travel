@@ -6,7 +6,14 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import BasicModal from "../Modal";
 import { useState } from "react";
-import { Divider, Drawer, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
+import {
+  Divider,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+} from "@mui/material";
 
 const drawerWidth = 240;
 const navItems = ["Home", "Stays", "Flights", "Packages"];
@@ -16,39 +23,37 @@ function DrawerAppBar({
   login,
   logout,
   user,
+  setUser,
   open,
   handleClose,
   handleOpen,
-  }) {
-  
-    const [mobileOpen, setMobileOpen] = useState(false);
-    
-    const handleDrawerToggle = () => {
-      setMobileOpen((prevState) => !prevState);
-    };
+}) {
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-    const drawer = (
-      <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-        <Typography variant="h6" sx={{ my: 2 }}>
-          trxvl.
-        </Typography>
-        <Divider />
-        <List>
-          {navItems.map((item) => (
-            <ListItem key={item} disablePadding>
-              <ListItemButton sx={{ textAlign: "center" }}>
-                <ListItemText primary={item} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Box>
-    );
+  const handleDrawerToggle = () => {
+    setMobileOpen((prevState) => !prevState);
+  };
 
-    const container =
+  const drawer = (
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+      <Typography variant="h6" sx={{ my: 2 }}>
+        trxvl.
+      </Typography>
+      <Divider />
+      <List>
+        {navItems.map((item) => (
+          <ListItem key={item} disablePadding>
+            <ListItemButton sx={{ textAlign: "center" }}>
+              <ListItemText primary={item} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
+
+  const container =
     window !== undefined ? () => window().document.body : undefined;
-
-
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -84,32 +89,38 @@ function DrawerAppBar({
             ))}
           </Box>
           <Box component="nav">
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </Box>
-          <BasicModal login={login} logout={logout} user={user} open={open} handleOpen={handleOpen} handleClose={handleClose}/>
+            <Drawer
+              container={container}
+              variant="temporary"
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              ModalProps={{
+                keepMounted: true, // Better open performance on mobile.
+              }}
+              sx={{
+                display: { xs: "block", sm: "none" },
+                "& .MuiDrawer-paper": {
+                  boxSizing: "border-box",
+                  width: drawerWidth,
+                },
+              }}
+            >
+              {drawer}
+            </Drawer>
+          </Box>
+          <BasicModal
+            login={login}
+            logout={logout}
+            user={user}
+            open={open}
+            handleOpen={handleOpen}
+            handleClose={handleClose}
+            setUser={setUser}
+          />
         </Toolbar>
       </AppBar>
     </Box>
   );
 }
-
-
 
 export default DrawerAppBar;

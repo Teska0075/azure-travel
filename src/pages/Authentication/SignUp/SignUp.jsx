@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -8,15 +8,58 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import axios from "axios";
+import { Alert, Snackbar } from "@mui/material";
 
 const SignUp = (props) => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // const data = new FormData(event.currentTarget);
-    // console.log({
-    //   email: data.get("email"),
-    //   password: data.get("password"),
-    // });
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rePassword, setRePassword] = useState("");
+
+  const [isAlert, setIsAlert] = useState("");
+  const [message, setMessage] = useState("");
+  const [state, setState] = useState("error");
+
+  const changeName = (e) => {
+    setName(e.target.value);
+  };
+  const changeEmail = (e) => {
+    setEmail(e.target.value);
+  };
+  const changePassword = (e) => {
+    setPassword(e.target.value);
+  };
+  const changeRePassword = (e) => {
+    setRePassword(e.target.value);
+  };
+
+  const signup = async () => {
+    if (!name || !email || !password || !rePassword) {
+      setMessage("Please fill all the areas!!!!!!!!!!!!");
+      setIsAlert(true);
+      return;
+    }
+
+    if (password !== rePassword) {
+      setMessage("Passwords did not match each other!!!");
+      setIsAlert(true);
+      return;
+    }
+
+    try {
+      const res = await axios.post("http://localhost:8000/signup", {
+        name,
+        email,
+        password,
+      });
+      setState("success");
+      setMessage(res.data.message);
+      setIsAlert(true);
+      props.setIsSignIn(true);
+    } catch (error) {
+      console.log("Error", error);
+    }
   };
 
   return (
@@ -35,7 +78,7 @@ const SignUp = (props) => {
         <Typography component="h1" variant="h5">
           Sign Up
         </Typography>
-        <Box onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required
@@ -44,6 +87,7 @@ const SignUp = (props) => {
             label="Username"
             name="name"
             autoFocus
+            onChange={changeName}
           />
           <TextField
             margin="normal"
@@ -54,6 +98,7 @@ const SignUp = (props) => {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={changeEmail}
           />
           <TextField
             margin="normal"
@@ -64,6 +109,7 @@ const SignUp = (props) => {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={changePassword}
           />
           <TextField
             margin="normal"
@@ -74,12 +120,14 @@ const SignUp = (props) => {
             type="password"
             id="re-password"
             autoComplete="current-password"
+            onChange={changeRePassword}
           />
           <Button
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
+            onClick={signup}
           >
             Sign Up
           </Button>
@@ -92,7 +140,7 @@ const SignUp = (props) => {
             <Grid item>
               <Button
                 onClick={() => {
-                  props.setIsSignIn(true);
+                  props.setSignIn(true);
                 }}
                 variant="text"
               >
@@ -102,6 +150,18 @@ const SignUp = (props) => {
           </Grid>
         </Box>
       </Box>
+      <Snackbar
+        open={isAlert}
+        autoHideDuration={3000}
+        onClose={() => {
+          setIsAlert(false);
+        }}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
+        <Alert severity={state} sx={{ width: "100%" }}>
+          {message}
+        </Alert>
+      </Snackbar>
     </Container>
   );
 };

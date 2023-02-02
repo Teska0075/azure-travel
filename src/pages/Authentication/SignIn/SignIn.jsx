@@ -13,14 +13,15 @@ import Container from "@mui/material/Container";
 import { useState } from "react";
 
 import { Alert, Snackbar } from "@mui/material";
+import axios from "axios";
 
-const SignIn = ({setSignIn, login}) => {
+const SignIn = ({ setSignIn, setUser, handleClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [message, setMessage] = useState("");
-
-
-  const [isAlert,setIsAlert] = useState(false);
+  const [status, setStatus] = useState("error");
+  const [isAlert, setIsAlert] = useState(false);
 
   const changeEmail = (e) => {
     setEmail(e.target.value);
@@ -31,14 +32,36 @@ const SignIn = ({setSignIn, login}) => {
   };
 
   const handleClick = () => {
-    if(email === "" || password === ""){
+    if (email === "" || password === "") {
       setMessage("Please fill all the areas");
-      setIsAlert(true)
-      return
+      setIsAlert(true);
+      return;
     }
 
-    login(email,password)
-  }
+    login(email, password);
+  };
+
+  const login = async (email, password) => {
+    try {
+      const res = await axios.post("http://localhost:8000/signin", {
+        email,
+        password,
+      });
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      setStatus("success");
+      setMessage(res.data.message);
+      setIsAlert(true);
+      setUser(res.data.user);
+      setTimeout(() => {
+        handleClose();
+      }, 3000);
+    } catch (error) {
+      console.log(error);
+      setStatus("error");
+      setMessage(error.response.data.message);
+      setIsAlert(true);
+    }
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -88,7 +111,6 @@ const SignIn = ({setSignIn, login}) => {
             onClick={handleClick}
             fullWidth
             variant="contained"
-            
             sx={{ mt: 3, mb: 2 }}
           >
             Sign In
@@ -115,12 +137,12 @@ const SignIn = ({setSignIn, login}) => {
       <Snackbar
         open={isAlert}
         autoHideDuration={3000}
-        onClose={()=>{
-          setIsAlert(false)
+        onClose={() => {
+          setIsAlert(false);
         }}
-        anchorOrigin={{ vertical: "top", horizontal: "left" }}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
-        <Alert severity="error" sx={{ width: "100%" }}>
+        <Alert severity={status} sx={{ width: "100%" }}>
           {message}
         </Alert>
       </Snackbar>

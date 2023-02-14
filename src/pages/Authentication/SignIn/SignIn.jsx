@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import axios from "axios";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -13,9 +14,10 @@ import Container from "@mui/material/Container";
 import { useState } from "react";
 
 import { Alert, Snackbar } from "@mui/material";
-import axios from "axios";
+import { UserContext } from "../../../context";
 
-const SignIn = ({ setSignIn, setUser, handleClose }) => {
+const SignIn = ({ setSignIn }) => {
+  const { setUser, handleClose } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -43,7 +45,7 @@ const SignIn = ({ setSignIn, setUser, handleClose }) => {
 
   const login = async (email, password) => {
     try {
-      const res = await axios.post("http://localhost:8000/signin", {
+      const res = await axios.post("http://localhost:8000/users/signin", {
         email,
         password,
       });
@@ -52,9 +54,7 @@ const SignIn = ({ setSignIn, setUser, handleClose }) => {
       setMessage(res.data.message);
       setIsAlert(true);
       setUser(res.data.user);
-      setTimeout(() => {
-        handleClose();
-      }, 3000);
+      handleClose();
     } catch (error) {
       console.log(error);
       setStatus("error");

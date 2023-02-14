@@ -5,6 +5,7 @@ import { useState } from "react";
 
 const AuthPage = ({ handleClose, isLogged, setUser, login }) => {
   const [isSignIn, setSignIn] = useState(true);
+
   return (
     <>
       {isSignIn ? (

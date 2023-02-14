@@ -1,8 +1,9 @@
-import * as React from "react";
+import { React, useContext } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import AuthPage from "../../../pages/Authentication";
+import { UserContext } from "../../../context";
 
 const style = {
   position: "absolute",
@@ -19,12 +20,13 @@ const style = {
 const BasicModal = ({
   user,
   login,
-  logout,
   handleOpen,
   handleClose,
   open,
   setUser,
 }) => {
+  const { logout } = useContext(UserContext);
+
   return (
     <>
       {user ? (

@@ -4,7 +4,7 @@ import SingleCategory from "./SingleCategory/SingleCategory";
 import { categories } from "../../../../data/HeroCategoriesIcon";
 import { Box, Grid, Typography } from "@mui/material";
 
-const HeroCategories = () => {
+const HeroCategories = ({ setIsCatDetail }) => {
   return (
     <Grid sx={{ marginTop: "4%", paddingRight: 15 }}>
       <Grid>
@@ -15,10 +15,14 @@ const HeroCategories = () => {
           Top Categories
         </Typography>
       </Grid>
-      <Grid sx={{ marginTop: "2%",  }}>
+      <Grid sx={{ marginTop: "2%" }}>
         <Box sx={{ display: "flex", gap: "6% " }}>
           {categories.map((card, i) => (
-            <SingleCategory key={i} card={card} />
+            <SingleCategory
+              key={i}
+              card={card}
+              setIsCatDetail={setIsCatDetail}
+            />
           ))}
         </Box>
       </Grid>

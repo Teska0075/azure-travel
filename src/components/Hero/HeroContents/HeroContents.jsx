@@ -5,11 +5,11 @@ import SearchInput from "./SearchInput/SearchInput";
 import HeroCategories from "./HeroCategories/HeroCategories";
 import VacationDestinations from "./VacationDestinations";
 
-const HeroContents = () => {
+const HeroContents = ({ setIsCatDetail }) => {
   return (
     <Grid
       sx={{
-        paddingTop:15,
+        paddingTop: 15,
         paddingLeft: 15,
         width: "100vw",
         height: "100vh",
@@ -19,7 +19,7 @@ const HeroContents = () => {
     >
       <HeroTitle />
       <SearchInput />
-      <HeroCategories />
+      <HeroCategories setIsCatDetail={setIsCatDetail} />
       <VacationDestinations />
     </Grid>
   );

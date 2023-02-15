@@ -9,15 +9,7 @@ import FooterMain from "./components/Footer/Bottom";
 function App() {
   return (
     <UserProvider>
-      <NavBar
-      // login={login}
-      // logout={logout}
-      // user={user}
-      // setUser={setUser}
-      // open={open}
-      // handleOpen={handleOpen}
-      // handleClose={handleClose}
-      />
+      <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<AuthPage />} />

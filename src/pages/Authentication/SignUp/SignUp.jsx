@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import UserContext from "../../../context/index.js";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -12,14 +13,22 @@ import axios from "axios";
 import { Alert, Snackbar } from "@mui/material";
 
 const SignUp = (props) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [rePassword, setRePassword] = useState("");
-
-  const [isAlert, setIsAlert] = useState("");
-  const [message, setMessage] = useState("");
-  const [state, setState] = useState("error");
+  const {
+    setName,
+    setEmail,
+    setPassword,
+    setRePassword,
+    email,
+    password,
+    rePassword,
+    name,
+    setMessage,
+    setIsAlert,
+    setState,
+    isAlert,
+    state,
+    message,
+  } = useContext(UserContext);
 
   const changeName = (e) => {
     setName(e.target.value);

@@ -17,15 +17,9 @@ const style = {
   p: 4,
 };
 
-const BasicModal = ({
-  user,
-  login,
-  handleOpen,
-  handleClose,
-  open,
-  setUser,
-}) => {
-  const { logout } = useContext(UserContext);
+const BasicModal = () => {
+  const { open, handleClose, logout, user, handleOpen } =
+    useContext(UserContext);
 
   return (
     <>
@@ -64,7 +58,7 @@ const BasicModal = ({
       )}
       <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
-          <AuthPage handleClose={handleClose} setUser={setUser} login={login} />
+          <AuthPage />
         </Box>
       </Modal>
     </>

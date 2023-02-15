@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import axios from "axios";
+// import axios from "axios";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -11,19 +11,29 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { useState } from "react";
 
 import { Alert, Snackbar } from "@mui/material";
 import { UserContext } from "../../../context";
 
 const SignIn = ({ setSignIn }) => {
-  const { setUser, handleClose } = useContext(UserContext);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const {
+    setEmail,
+    setPassword,
+    email,
+    password,
+    setMessage,
+    setIsAlert,
+    status,
+    isAlert,
+    login,
+    message,
+  } = useContext(UserContext);
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
 
-  const [message, setMessage] = useState("");
-  const [status, setStatus] = useState("error");
-  const [isAlert, setIsAlert] = useState(false);
+  // const [message, setMessage] = useState("");
+  // const [status, setStatus] = useState("error");
+  // const [isAlert, setIsAlert] = useState(false);
 
   const changeEmail = (e) => {
     setEmail(e.target.value);
@@ -43,25 +53,25 @@ const SignIn = ({ setSignIn }) => {
     login(email, password);
   };
 
-  const login = async (email, password) => {
-    try {
-      const res = await axios.post("http://localhost:8000/users/signin", {
-        email,
-        password,
-      });
-      localStorage.setItem("user", JSON.stringify(res.data.user));
-      setStatus("success");
-      setMessage(res.data.message);
-      setIsAlert(true);
-      setUser(res.data.user);
-      handleClose();
-    } catch (error) {
-      console.log(error);
-      setStatus("error");
-      setMessage(error.response.data.message);
-      setIsAlert(true);
-    }
-  };
+  // const login = async (email, password) => {
+  //   try {
+  //     const res = await axios.post("http://localhost:8000/users/signin", {
+  //       email,
+  //       password,
+  //     });
+  //     localStorage.setItem("user", JSON.stringify(res.data.user));
+  //     setStatus("success");
+  //     setMessage(res.data.message);
+  //     setIsAlert(true);
+  //     setUser(res.data.user);
+  //     handleClose();
+  //   } catch (error) {
+  //     console.log(error);
+  //     setStatus("error");
+  //     setMessage(error.response.data.message);
+  //     setIsAlert(true);
+  //   }
+  // };
 
   return (
     <Container component="main" maxWidth="xs">

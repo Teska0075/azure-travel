@@ -9,7 +9,7 @@ import CategoriesPage from "../Categories";
 const Home = () => {
   const [isCatDetail, setIsCatDetail] = useState("All");
   console.log(isCatDetail);
-  if (isCatDetail == "All") {
+  if (isCatDetail === "All") {
     return (
       <Grid sx={{ width: "100vw" }}>
         <Grid

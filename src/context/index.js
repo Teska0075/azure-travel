@@ -46,6 +46,7 @@ const UserProvider = ({ children }) => {
       setMessage(res.data.message);
       setIsAlert(true);
       setUser(res.data.user);
+      console.log(res.data.user);
       handleClose();
     } catch (error) {
       console.log(error);

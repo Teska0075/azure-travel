@@ -5,7 +5,7 @@ import HeroCategories from "../../components/Hero/HeroContents/HeroCategories/He
 import HeroTitle from "../../components/Hero/HeroContents/HeroTitle/HeroTitle";
 import SearchInput from "../../components/Hero/HeroContents/SearchInput/SearchInput";
 
-const CategoriesPage = ({ setIsCatDetail }) => {
+const CategoriesPage = ({ setIsCatDetail, isCatDetail }) => {
   return (
     <Grid sx={{ width: "100vw" }}>
       <Grid
@@ -32,7 +32,7 @@ const CategoriesPage = ({ setIsCatDetail }) => {
           <HeroCategories setIsCatDetail={setIsCatDetail} />
         </Grid>
       </Grid>
-      <CategoriesComp />
+      <CategoriesComp isCatDetail={isCatDetail} />
     </Grid>
   );
 };

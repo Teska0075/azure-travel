@@ -1,8 +1,9 @@
 import React from "react";
-import { Grid } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 import HeroContents from "../../components/Hero/HeroContents/HeroContents";
 import MainContents from "../../components/Main";
 import FooterTop from "../../components/Footer/Top";
+import Popular from "../../components/Popular"
 import { useState } from "react";
 import CategoriesPage from "../Categories";
 
@@ -28,7 +29,12 @@ const Home = () => {
       </Grid>
     );
   } else {
-    return <CategoriesPage setIsCatDetail={setIsCatDetail} />;
+    return (
+    <Box>
+      
+      <CategoriesPage isCatDetail={isCatDetail} setIsCatDetail={setIsCatDetail} />
+    </Box>
+    );
   }
 };
 

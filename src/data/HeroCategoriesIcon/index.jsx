@@ -16,7 +16,7 @@ export const categories = [
     imageUrl: "/images/icons/mountains.svg",
   },
   {
-    title: "Iconic cities",
+    title: "Cities",
     imageUrl: "/images/icons/cities.svg",
   },
   {
